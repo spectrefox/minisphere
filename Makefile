@@ -39,7 +39,7 @@ cell_sources=src/compiler/main.c \
    src/shared/lstring.c src/shared/path.c src/shared/unicode.c \
    src/shared/vector.c \
    src/compiler/api.c src/compiler/assets.c src/compiler/build.c \
-   src/compiler/spk_writer.c src/compiler/utility.c
+   src/compiler/spk_writer.c src/compiler/target.c src/compiler/utility.c
 cell_libs= \
    -lz -lm
 

@@ -54,6 +54,12 @@
     <ClCompile Include="..\src\compiler\api.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\compiler\target.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\compiler\tool.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\shared\duktape.h">
@@ -108,6 +114,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\compiler\api.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\compiler\target.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\compiler\tool.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
