@@ -53,7 +53,8 @@ tool_exec(tool_t* tool, const path_t* out_path, vector_t* in_paths)
 	iter = vector_enum(in_paths);
 	while (p_path = vector_next(&iter)) {
 		stat(path_cstr(*p_path), &sb);
-		is_outdated |= sb.st_mtime > last_time;
+		if (is_outdated = sb.st_mtime > last_time)
+			break;  // short circuit
 	}
 	
 	// if the target file is out of date, rebuild it.

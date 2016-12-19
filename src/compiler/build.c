@@ -1,7 +1,6 @@
 #include "cell.h"
 #include "build.h"
 
-#include "assets.h"
 #include "spk_writer.h"
 
 struct build
@@ -63,7 +62,6 @@ build_exec(build_t* build, const path_t* in_path, const path_t* out_path)
 		asset_path = path_rebase(path_dup(target_path(p->target)), in_path);
 		install_path = path_rebase(path_dup(name), p->path);
 		if (spk != NULL) {
-			// TODO: package built targets
 			spk_add_file(spk,
 				path_cstr(asset_path),
 				path_cstr(install_path));
