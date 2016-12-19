@@ -58,7 +58,7 @@ build_exec(build_t* build, const path_t* in_path, const path_t* out_path)
 
 	iter = vector_enum(build->installs);
 	while (p = vector_next(&iter)) {
-		target_build(p->target);
+		target_build(p->target, out_path);
 		name = target_name(p->target);
 		asset_path = path_rebase(path_dup(target_path(p->target)), in_path);
 		install_path = path_rebase(path_dup(name), p->path);

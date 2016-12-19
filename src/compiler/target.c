@@ -69,16 +69,32 @@ target_add_source(target_t* target, target_t* source)
 	vector_push(target->sources, &source);
 }
 
-void
-target_build(target_t* target)
+bool
+target_build(target_t* target, const path_t* out_path)
 {
+	vector_t* in_paths = NULL;
+	path_t*   path;
+	bool      status;
+
 	iter_t iter;
-	target_t* *p;
+	path_t*   *p_path;
+	target_t* *p_target;
 
-	// build any dependencies first
+	// build dependencies and add them to the source list
+	in_paths = vector_new(sizeof(path_t*));
 	iter = vector_enum(target->sources);
-	while (vector_next(&iter))
-		target_build(*p);
+	while (p_target = vector_next(&iter)) {
+		target_build(*p_target, out_path);
+		path = path_dup(target_path(*p_target));
+		path_rebase(path, out_path);
+		vector_push(in_paths, &path);
+	}
 
-	// TODO: actually build the target
+	// now build the target
+	status = tool_exec(target->tool, target->path, in_paths);
+	iter = vector_enum(in_paths);
+	while (p_path = vector_next(&iter))
+		path_free(*p_path);
+	vector_free(in_paths);
+	return status;
 }
